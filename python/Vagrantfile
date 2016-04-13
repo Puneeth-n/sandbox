@@ -1,0 +1,23 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Copyright (C) 2016 Puneeth Nanjundaswamy <puneeth.nanjundaswamy@gmail.com>
+
+$script = <<SCRIPT
+
+echo Installing depedencies...
+sudo apt-get update
+sudo apt-get install -y build-essential python-pip automake python-dev
+sudo pip install -U pip
+
+SCRIPT
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "ubuntu/trusty64"
+  config.vm.provision "shell", inline: $script
+  config.vm.network "private_network", type: 'dhcp'
+  config.vm.synced_folder '.', '/opt/sandbox'
+  config.vm.hostname = "sandbox"
+end
