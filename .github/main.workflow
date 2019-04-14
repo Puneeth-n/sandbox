@@ -1,6 +1,17 @@
-workflow "merge to master" {
+workflow "pull_request" {
   resolves = ["post-release"]
-  on = "label"
+  on = "pull_request"
+}
+
+
+workflow "release" {
+  on = "release"
+  resolves = ["post-release"]
+}
+
+workflow "check_run" {
+  on = "check_run"
+  resolves = ["post-release"]
 }
 
 action "post-release" {
