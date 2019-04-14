@@ -17,4 +17,8 @@ workflow "check_run" {
 action "merge-bot" {
   uses = "puneeth-n/auto-merge-action@master"
   secrets = ["GITHUB_TOKEN"]
+  env = {
+    OK_TO_MERGE_LABEL = "merge when green",
+    BASE_BRANCH = "master"
+  }
 }
