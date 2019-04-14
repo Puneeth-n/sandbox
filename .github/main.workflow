@@ -1,20 +1,20 @@
 workflow "pull_request" {
-  resolves = ["post-release"]
+  resolves = ["merge-bot"]
   on = "pull_request"
 }
 
 
 workflow "release" {
   on = "release"
-  resolves = ["post-release"]
+  resolves = ["merge-bot"]
 }
 
 workflow "check_run" {
   on = "check_run"
-  resolves = ["post-release"]
+  resolves = ["merge-bot"]
 }
 
-action "post-release" {
+action "merge-bot" {
   uses = "puneeth-n/auto-merge-action@master"
   secrets = ["GITHUB_TOKEN"]
 }
