@@ -1,4 +1,4 @@
-workflow "merge to master" {
+workflow "pull_request" {
   resolves = ["post-release"]
   on = "pull_request"
 }
@@ -6,4 +6,9 @@ workflow "merge to master" {
 action "post-release" {
   uses = "puneeth-n/auto-merge-action@master"
   secrets = ["GITHUB_TOKEN"]
+}
+
+workflow "release" {
+  on = "release"
+  resolves = ["post-release"]
 }
