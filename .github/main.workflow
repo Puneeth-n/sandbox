@@ -1,8 +1,9 @@
 workflow "merge to master" {
   on = "release"
-  resolves = ["new-action"]
+  resolves = ["post-release"]
 }
 
-action "new-action" {
-  uses = "owner/repo/path@ref"
+action "post-release" {
+  uses = "puneeth-n/auto-merge-action@master"
+  secrets = ["GITHUB_TOKEN"]
 }
