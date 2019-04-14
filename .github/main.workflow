@@ -1,6 +1,6 @@
 workflow "merge to master" {
-  on = "release"
   resolves = ["post-release"]
+  on = "label"
 }
 
 action "post-release" {
